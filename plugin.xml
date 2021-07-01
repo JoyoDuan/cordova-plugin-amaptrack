@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-amaptrack" version="0.0.1"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <name>AMapTrackPlugin</name>
+    <description>Cordova AMapTrackPlugin Powerd by JoyoDuan</description>
+    <author email="JoyoDuan@163.com" href="">
+        JoyoDuan
+    </author>
+    <license>Apache 2.0</license>
+    <keywords>Cordova, AMapTrack, AMapTrackPlugin, JoyoDuan, Joyo</keywords>
+
+    <!-- 对外js调用，用于require name一般对应js对用native的类名-->
+    <js-module name="AMapTrackPlugin" src="www/amap-track.js">
+        <!-- 对js开放调用的声明 -->
+        <clobbers target="AMapTrack" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <!-- 加了preference后，add plugin 时要跟variable参数 -->
+        <preference name="ANDROID_KEY" default="" />
+        
+        <config-file parent="/*" target="res/xml/config.xml">
+            <!-- name一般对应js对用native的类名 -->
+            <feature name="AMapTrackPlugin">
+                <param name="android-package" value="com.joyo.cordova.track.AMapTrackPlugin" />
+            </feature>
+        </config-file>
+
+        <config-file parent="/*" target="app/src/main/AndroidManifest.xml">
+            <!--用于进行网络定位-->
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+            <!--用于访问GPS定位-->
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+            <!--用于获取运营商信息，用于支持提供运营商信息相关的接口-->
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+            <!--用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+            <!--用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+            <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+            <!--用于访问网络，网络定位需要上网-->
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <!--用于读取手机当前的状态-->
+            <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+            <!--用于写入缓存数据到扩展存储卡-->
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+            <!--用于申请调用A-GPS模块-->
+            <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+            <!--用于申请获取蓝牙信息进行室内定位-->
+            <uses-permission android:name="android.permission.BLUETOOTH"/>
+            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+        </config-file>
+
+        <config-file target="app/src/main/AndroidManifest.xml" parent="/manifest/application" mode="merge">
+            <!--您申请的高德地图android key-->
+            <meta-data android:name="com.amap.api.v2.apikey" android:value="$ANDROID_KEY"/>
+
+            <!-- 轨迹需要的服务 -->
+            <service android:name="com.amap.api.track.AMapTrackService"/>
+            <!-- 定位需要的服务 -->
+            <service android:name="com.amap.api.location.APSService"/>
+        </config-file>
+
+        <source-file src="libs/android/AMapTrack_1.4.0_AMapLocation_5.3.1_20210331.jar" target-dir="libs"/>
+        <source-file src="src/android/SimpleOnTrackLifecycleListener.java" target-dir="src/com/joyo/cordova/track" />
+        <source-file src="src/android/SimpleOnTrackListener.java" target-dir="src/com/joyo/cordova/track" />
+        <source-file src="src/android/AMapTrack.java" target-dir="src/com/joyo/cordova/track" />
+    </platform>
+</plugin>

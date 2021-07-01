@@ -1,0 +1,26 @@
+{
+  "name": "cordova-plugin-amaptrack",
+  "version": "0.0.1",
+  "description": "Cordova AMapTrackPlugin Plugin Powerd by JoyoDuan",
+  "cordova": {
+    "id": "cordova-plugin-amaptrack",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "cordova",
+    "AMapTrackPlugin",
+    "JoyoDuan",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "JoyoDuan",
+  "license": "Apache 2.0"
+}
