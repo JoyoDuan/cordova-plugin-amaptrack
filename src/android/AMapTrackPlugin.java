@@ -36,8 +36,8 @@ import org.json.JSONObject;
  * @Date 2021/6/30
  * @Description:
  */
-public class TrackPlugin extends CordovaPlugin {
-    private static final String TAG = "TrackPlugin";
+public class AMapTrackPlugin extends CordovaPlugin {
+    private static final String TAG = "AMapTrackPlugin";
     private static final String CHANNEL_ID_SERVICE_RUNNING = "CHANNEL_ID_SERVICE_RUNNING";
 
     // 上下文

@@ -66,6 +66,6 @@
         <source-file src="libs/android/AMapTrack_1.4.0_AMapLocation_5.3.1_20210331.jar" target-dir="libs"/>
         <source-file src="src/android/SimpleOnTrackLifecycleListener.java" target-dir="src/com/joyo/cordova/track" />
         <source-file src="src/android/SimpleOnTrackListener.java" target-dir="src/com/joyo/cordova/track" />
-        <source-file src="src/android/AMapTrack.java" target-dir="src/com/joyo/cordova/track" />
+        <source-file src="src/android/AMapTrackPlugin.java" target-dir="src/com/joyo/cordova/track" />
     </platform>
 </plugin>
