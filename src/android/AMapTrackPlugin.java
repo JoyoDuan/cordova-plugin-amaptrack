@@ -57,9 +57,9 @@ public class AMapTrackPlugin extends CordovaPlugin {
     // 轨迹id，非必填，如果没有请传入0，会自动注册一条轨迹
     private long trackId;
     // 定位时间间隔，单位：秒
-    private int locationInterval = 5;
+    private int locationInterval = 2;
     // 上传时间间隔，单位：秒
-    private int uploadInterval = 60;
+    private int uploadInterval = 20;
     // 是否上传轨迹到指定轨迹，false则上传为终端的散点位置
     private boolean uploadToTrack = false;
 
