@@ -57,9 +57,9 @@ public class AMapTrackPlugin extends CordovaPlugin {
     // 轨迹id，非必填，如果没有请传入0，会自动注册一条轨迹
     private long trackId;
     // 定位时间间隔，单位：秒
-    private int locationInterval = 2;
+    private int locationInterval = 5;
     // 上传时间间隔，单位：秒
-    private int uploadInterval = 20;
+    private int uploadInterval = 60;
     // 是否上传轨迹到指定轨迹，false则上传为终端的散点位置
     private boolean uploadToTrack = false;
 
@@ -395,6 +395,8 @@ public class AMapTrackPlugin extends CordovaPlugin {
         Intent nfIntent = new Intent(cordova.getActivity(), cordova.getActivity().getClass());
         nfIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         builder.setContentIntent(PendingIntent.getActivity(cordova.getActivity(), 0, nfIntent, 0))
+                // .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(context.getApplicationInfo().icon)
                 .setContentTitle("学车小王子")
                 .setContentText("猎鹰运行中");
         return builder.build();

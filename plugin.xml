@@ -21,7 +21,7 @@
     <platform name="android">
         <!-- 加了preference后，add plugin 时要跟variable参数 -->
         <preference name="ANDROID_KEY" default="" />
-        
+
         <config-file parent="/*" target="res/xml/config.xml">
             <!-- name一般对应js对用native的类名 -->
             <feature name="AMapTrackPlugin">
@@ -59,8 +59,10 @@
 
             <!-- 轨迹需要的服务 -->
             <service android:name="com.amap.api.track.AMapTrackService"/>
-            <!-- 定位需要的服务 -->
-            <service android:name="com.amap.api.location.APSService"/>
+            <!-- 定位需要的服务 适配Android Q需要加上android:foregroundServiceType="location"-->
+            <service
+              android:name="com.amap.api.location.APSService"
+              android:foregroundServiceType="location" />
         </config-file>
 
         <source-file src="libs/android/AMapTrack_1.4.0_AMapLocation_5.3.1_20210331.jar" target-dir="libs"/>
