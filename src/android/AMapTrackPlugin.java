@@ -155,9 +155,9 @@ public class AMapTrackPlugin extends CordovaPlugin {
                                             // trackId需要在启动服务后设置才能生效，因此这里不设置，而是在startGather之前设置了track id
                                             trackId = addTrackResponse.getTrid();
                                             TrackParam trackParam = new TrackParam(serviceId, terminalId);
-                                            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                                trackParam.setNotification(createNotification());
-                                            }
+                                            // if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                            //     trackParam.setNotification(createNotification());
+                                            // }
                                             aMapTrackClient.startTrack(trackParam, onTrackListener);
                                         } else {
                                             // Toast.makeText(cordova.getActivity(), "网络请求失败，" + addTrackResponse.getErrorMsg(), Toast.LENGTH_SHORT).show();
@@ -168,17 +168,17 @@ public class AMapTrackPlugin extends CordovaPlugin {
                             } else {
                                 // 上传到指定trackId的轨迹
                                 TrackParam trackParam = new TrackParam(serviceId, terminalId);
-                                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                    trackParam.setNotification(createNotification());
-                                }
+                                // if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                //     trackParam.setNotification(createNotification());
+                                // }
                                 aMapTrackClient.startTrack(trackParam, onTrackListener);
                             }
                         } else {
                             // 不指定track id，上报的轨迹点是该终端的散点轨迹
                             TrackParam trackParam = new TrackParam(serviceId, terminalId);
-                            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                trackParam.setNotification(createNotification());
-                            }
+                            // if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            //     trackParam.setNotification(createNotification());
+                            // }
                             aMapTrackClient.startTrack(trackParam, onTrackListener);
                         }
                     } else {
@@ -189,9 +189,9 @@ public class AMapTrackPlugin extends CordovaPlugin {
                                 if (addTerminalResponse.isSuccess()) {
                                     terminalId = addTerminalResponse.getTid();
                                     TrackParam trackParam = new TrackParam(serviceId, terminalId);
-                                    if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                        trackParam.setNotification(createNotification());
-                                    }
+                                    // if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                    //     trackParam.setNotification(createNotification());
+                                    // }
                                     aMapTrackClient.startTrack(trackParam, onTrackListener);
                                 } else {
                                     // Toast.makeText(cordova.getActivity(), "网络请求失败，" + addTerminalResponse.getErrorMsg(), Toast.LENGTH_SHORT).show();
@@ -385,7 +385,7 @@ public class AMapTrackPlugin extends CordovaPlugin {
     private Notification createNotification() {
         Notification.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationManager nm = (NotificationManager) cordova.getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID_SERVICE_RUNNING, "app service", NotificationManager.IMPORTANCE_LOW);
             nm.createNotificationChannel(channel);
             builder = new Notification.Builder(context, CHANNEL_ID_SERVICE_RUNNING);
