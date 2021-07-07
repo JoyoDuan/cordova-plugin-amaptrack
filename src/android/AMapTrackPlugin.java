@@ -25,6 +25,7 @@ import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
+import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -161,7 +162,11 @@ public class AMapTrackPlugin extends CordovaPlugin {
                                             aMapTrackClient.startTrack(trackParam, onTrackListener);
                                         } else {
                                             // Toast.makeText(cordova.getActivity(), "网络请求失败，" + addTrackResponse.getErrorMsg(), Toast.LENGTH_SHORT).show();
-                                            callbackContext.error("AMapTrackClient addTrackResponse is error: " + addTrackResponse.getErrorMsg());
+                                            // callbackContext.error("AMapTrackClient addTrackResponse is error: " + addTrackResponse.getErrorMsg());
+
+                                            PluginResult r = new PluginResult(PluginResult.Status.ERROR, "AMapTrackClient addTrackResponse is error: " + addTrackResponse.getErrorMsg());
+                                            r.setKeepCallback(true);
+                                            callbackContext.sendPluginResult(r);
                                         }
                                     }
                                 });
@@ -195,14 +200,22 @@ public class AMapTrackPlugin extends CordovaPlugin {
                                     aMapTrackClient.startTrack(trackParam, onTrackListener);
                                 } else {
                                     // Toast.makeText(cordova.getActivity(), "网络请求失败，" + addTerminalResponse.getErrorMsg(), Toast.LENGTH_SHORT).show();
-                                    callbackContext.error("MapTrackClient addTerminal is error: " + addTerminalResponse.getErrorMsg());
+                                    // callbackContext.error("MapTrackClient addTerminal is error: " + addTerminalResponse.getErrorMsg());
+
+                                    PluginResult r = new PluginResult(PluginResult.Status.ERROR, "MapTrackClient addTerminal is error: " + addTerminalResponse.getErrorMsg());
+                                    r.setKeepCallback(true);
+                                    callbackContext.sendPluginResult(r);
                                 }
                             }
                         });
                     }
                 } else {
                     // Toast.makeText(cordova.getActivity(), "网络请求失败，" + queryTerminalResponse.getErrorMsg(), Toast.LENGTH_SHORT).show();
-                    callbackContext.error("MapTrackClient QueryTerminal is error: " + queryTerminalResponse.getErrorMsg());
+                    // callbackContext.error("MapTrackClient QueryTerminal is error: " + queryTerminalResponse.getErrorMsg());
+
+                    PluginResult r = new PluginResult(PluginResult.Status.ERROR, "MapTrackClient QueryTerminal is error: " + queryTerminalResponse.getErrorMsg());
+                    r.setKeepCallback(true);
+                    callbackContext.sendPluginResult(r);
                 }
             }
         });
@@ -270,7 +283,11 @@ public class AMapTrackPlugin extends CordovaPlugin {
                     e.printStackTrace();
                 }
                 // 返回成功状态给js
-                callbackContext.success(jsonObject);
+                // callbackContext.success(jsonObject);
+
+                PluginResult r = new PluginResult(PluginResult.Status.OK, jsonObject);
+                r.setKeepCallback(true);
+                callbackContext.sendPluginResult(r);
             } else if (status == ErrorCode.TrackListen.START_TRACK_ALREADY_STARTED) {
                 // 已经启动
                 // Toast.makeText(cordova.getActivity(), "服务已经启动", Toast.LENGTH_SHORT).show();
@@ -283,13 +300,21 @@ public class AMapTrackPlugin extends CordovaPlugin {
                     e.printStackTrace();
                 }
                 // 返回成功状态给js
-                callbackContext.success(jsonObject);
+                // callbackContext.success(jsonObject);
+
+                PluginResult r = new PluginResult(PluginResult.Status.OK, jsonObject);
+                r.setKeepCallback(true);
+                callbackContext.sendPluginResult(r);
             } else {
                 Log.w(TAG, "error onStartTrackCallback, status: " + status + ", msg: " + msg);
                 // Toast.makeText(cordova.getActivity(),
                 //         "error onStartTrackCallback, status: " + status + ", msg: " + msg,
                 //         Toast.LENGTH_LONG).show();
-                callbackContext.error("error onStartTrackCallback, status: " + status + ", msg: " + msg);
+                // callbackContext.error("error onStartTrackCallback, status: " + status + ", msg: " + msg);
+
+                PluginResult r = new PluginResult(PluginResult.Status.ERROR, "error onStartTrackCallback, status: " + status + ", msg: " + msg);
+                r.setKeepCallback(true);
+                callbackContext.sendPluginResult(r);
             }
         }
 
@@ -307,13 +332,21 @@ public class AMapTrackPlugin extends CordovaPlugin {
                     e.printStackTrace();
                 }
                 // 返回成功状态给js
-                callbackContext.success(jsonObject);
+                // callbackContext.success(jsonObject);
+
+                PluginResult r = new PluginResult(PluginResult.Status.OK, jsonObject);
+                r.setKeepCallback(true);
+                callbackContext.sendPluginResult(r);
             } else {
                 Log.w(TAG, "error onStopTrackCallback, status: " + status + ", msg: " + msg);
                 // Toast.makeText(cordova.getActivity(),
                 //         "error onStopTrackCallback, status: " + status + ", msg: " + msg,
                 //         Toast.LENGTH_LONG).show();
-                callbackContext.error("error onStopTrackCallback, status: " + status + ", msg: " + msg);
+                // callbackContext.error("error onStopTrackCallback, status: " + status + ", msg: " + msg);
+
+                PluginResult r = new PluginResult(PluginResult.Status.ERROR, "error onStopTrackCallback, status: " + status + ", msg: " + msg);
+                r.setKeepCallback(true);
+                callbackContext.sendPluginResult(r);
 
             }
         }
@@ -331,7 +364,11 @@ public class AMapTrackPlugin extends CordovaPlugin {
                     e.printStackTrace();
                 }
                 // 返回成功状态给js
-                callbackContext.success(jsonObject);
+                // callbackContext.success(jsonObject);
+
+                PluginResult r = new PluginResult(PluginResult.Status.OK, jsonObject);
+                r.setKeepCallback(true);
+                callbackContext.sendPluginResult(r);
             } else if (status == ErrorCode.TrackListen.START_GATHER_ALREADY_STARTED) {
                 // Toast.makeText(cordova.getActivity(), "定位采集已经开启", Toast.LENGTH_SHORT).show();
 
@@ -343,13 +380,21 @@ public class AMapTrackPlugin extends CordovaPlugin {
                     e.printStackTrace();
                 }
                 // 返回成功状态给js
-                callbackContext.success(jsonObject);
+                // callbackContext.success(jsonObject);
+
+                PluginResult r = new PluginResult(PluginResult.Status.OK, jsonObject);
+                r.setKeepCallback(true);
+                callbackContext.sendPluginResult(r);
             } else {
                 Log.w(TAG, "error onStartGatherCallback, status: " + status + ", msg: " + msg);
                 // Toast.makeText(cordova.getActivity(),
                 //         "error onStartGatherCallback, status: " + status + ", msg: " + msg,
                 //         Toast.LENGTH_LONG).show();
-                callbackContext.error("error onStartGatherCallback, status: " + status + ", msg: " + msg);
+                // callbackContext.error("error onStartGatherCallback, status: " + status + ", msg: " + msg);
+
+                PluginResult r = new PluginResult(PluginResult.Status.ERROR, "error onStartGatherCallback, status: " + status + ", msg: " + msg);
+                r.setKeepCallback(true);
+                callbackContext.sendPluginResult(r);
             }
         }
 
@@ -366,13 +411,21 @@ public class AMapTrackPlugin extends CordovaPlugin {
                     e.printStackTrace();
                 }
                 // 返回成功状态给js
-                callbackContext.success(jsonObject);
+                // callbackContext.success(jsonObject);
+
+                PluginResult r = new PluginResult(PluginResult.Status.OK, jsonObject);
+                r.setKeepCallback(true);
+                callbackContext.sendPluginResult(r);
             } else {
                 Log.w(TAG, "error onStopGatherCallback, status: " + status + ", msg: " + msg);
                 // Toast.makeText(cordova.getActivity(),
                 //         "error onStopGatherCallback, status: " + status + ", msg: " + msg,
                 //         Toast.LENGTH_LONG).show();
-                callbackContext.error("error onStopGatherCallback, status: " + status + ", msg: " + msg);
+                // callbackContext.error("error onStopGatherCallback, status: " + status + ", msg: " + msg);
+
+                PluginResult r = new PluginResult(PluginResult.Status.ERROR, "error onStopGatherCallback, status: " + status + ", msg: " + msg);
+                r.setKeepCallback(true);
+                callbackContext.sendPluginResult(r);
             }
         }
     };
